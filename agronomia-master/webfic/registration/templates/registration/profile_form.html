@@ -1,0 +1,71 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Perfil{% endblock %}
+{% block content %}
+
+{% if  request.user.is_authenticated %}
+      {%include 'registration/includes/publication_menu.html'%}
+       {% endif %}
+<style>.errorlist{color:red;} label{display:none}</style>
+<main role="main">
+  <div class="container bg-3">
+    <div class="row mt-3">
+      <div class="col-md-9 mx-auto mb-5">
+        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+          <div class="row">
+            <!-- Previa del avatar -->
+            <div class="col-md-2">
+              {% if profile.avatar %}
+                <img src="{{profile.avatar.url}}" class="img-fluid">
+                <p class="mt-1">¿Borrar? <input type="checkbox" id="avatar-clear" name="avatar-clear" /></p>
+                {% else %}
+                  <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-fluid">
+              {% endif %}
+            </div>
+            <!-- Formulario -->
+            <div class="col-md-10">
+              <h3>Perfil</h3>
+              <input type="file" name="avatar" class="form-control-file mt-3" id="id_avatar" ><br>
+               <b>{{profile.user|truncatechars:"16"}}</b><br>
+               
+              {{ form.nombre }}
+              {{ form.nombre_director }}
+              {{ form.nombre_secretario }}
+              {{ form.correo }}
+              {{ form.telefono }}
+              {{ form.enfoque_social }}
+              {{ form.fecha_nac }}
+              {{ form.direccion }}
+              {{ form.pais }}
+              {{ form.estado }}
+              {{ form.ciudad }}
+              {{ form.proyectos }}
+              {{ form.miembros }}
+              {{ form.objetivos }}
+              {{ form.img_proyectos }}
+              {{ form.img_miembros }}
+              {{ form.img_objetivos }}
+
+              
+              <input type="email" value="{{profile.user.email}}" class="form-control mt-3" readonly>
+              <p class="mt-3">Si deseas editar tu email haz clic <a href="{% url 'profile_email' %}"> aqui </a> </p>
+              <p class="mt-3">
+                Para crear una publicacion de clic <a href=" {% url 'publication_create' %}"> aqui </a>.
+              </p>
+
+              <input type="submit" class="btn btn-primary btn-block mt-3" value="Actualizar">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+</main>
+
+
+
+     
+{% endblock %}

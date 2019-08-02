@@ -1,0 +1,65 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+{% block title %}CONTACTO{% endblock %}
+
+
+  {% load wagtailcore_tags wagtailimages_tags widget_tweaks %}
+
+{% block body_class %}template-contactopage{% endblock %}
+
+{% block content %}
+
+
+<main role="main">
+  <div class="container bg-3">
+  <div class="row mt-3">
+
+<div class="col-md-4 mx-auto mb-5">
+
+     
+ <h3 >CONTACTO</h3>
+<br>
+   
+<form action="{% pageurl page %}" method="POST">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger" role="alert">
+        {% for error in form.non_field_errors %}
+          {{ error }}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% for field in form.visible_fields %}
+      <div class="form-group">
+        {{ field.label_tag }}
+        {% render_field field class+="form-control" %}
+      </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary" >Enviar</button>
+</form>
+
+</div>
+
+
+</div>
+</div>
+</main>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

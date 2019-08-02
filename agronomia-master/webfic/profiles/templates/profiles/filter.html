@@ -1,0 +1,101 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} Busqueda{% endblock %}
+{% block content %}
+
+<style>.profile-avatar{float:left;width:4rem;height:4rem}.profile-data{padding-left:4.5rem;padding-top:.4rem;}</style>
+
+
+<main role="main">
+
+
+  <div class="container bg-3">
+  
+     <h2>Lista de perfiles</h2>
+     <form action="" method="get" >
+      {{ fil.form.as_p }} 
+         <button type="submit">Buscar</button>
+       </form>
+
+    <div class="row mt-3">
+      <div class="col-md-8 mx-auto mb-5">
+       
+        
+
+
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>LOGO</th>
+                        <th>ORGANIZACION</th>
+                        <th>TELEFONO</th>
+                        <th>CORREO</th>
+                        <th>ENFOQUE</th>
+                        <th>CIUDAD</th>
+                        <th>ESTADO</th>
+                        <th>PERFIL</th>
+                        
+                    </tr>
+                </thead>
+               
+                <b>{% for profile in filter %} </b><br>
+                <tbody>
+                    <tr>
+                        <td> {% if profile.avatar %}
+                                <img src="{{profile.avatar.url}}" class="img-fluid profile-avatar">
+                              {% else %}
+                                <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-fluid profile-avatar">
+                              {% endif %}</td>
+
+                        <td>{{profile.nombre|truncatechars:"14"}}</td>
+                        <td>{{profile.telefono|truncatechars:"20"}}</td>
+                        <td>{{profile.correo|truncatechars:"16"}}</td>
+                        <td>{{profile.enfoque_social|truncatechars:"20"}}</td>
+                        <td>{{profile.ciudad|truncatechars:"16"}}</td>
+                        <td>{{profile.estado|truncatechars:"16"}}</td>
+                        <td> <a href="{% url 'profiles:detail' profile.user %}">Ver perfil</a></td>
+                        
+                    </tr>
+                    
+                </tbody>
+                {% endfor %}
+
+            </table>
+
+             <!-- Menú de paginación -->
+          
+
+  {% if filter.has_other_pages %}
+  <ul class="pagination">
+    {% if filter.has_previous %}
+      <li><a href="?page={{ filter.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in filter.paginator.page_range %}
+      {% if filter.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if filter.has_next %}
+      <li><a href="?page={{ filter.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+      </div>
+    </div>
+  </div>
+    </div>
+</main>
+ 
+
+{% endblock %}
+
+
+               
+      

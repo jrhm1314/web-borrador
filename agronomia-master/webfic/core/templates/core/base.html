@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+    <!-- Estilos -->
+    <link href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'core/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="{% static 'core/css/main.css' %}" rel="stylesheet">
+    
+
+  <style>
+     .navbar .container .navbar-brand {
+    
+    font-size: 40px;
+
+   
+      }
+
+      .navbar .container .nav-link {
+    
+    font-size: 20px;
+    padding-left: 30px;
+
+      }
+
+    .navbar-brand .img{
+   
+  
+    top: 0;
+    
+}
+
+
+.navbar-toggler {
+ line-height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+  float: right;
+}
+
+#logo{
+
+    position:absolute;
+    top:0px; 
+    left:10px;
+    width:70px;
+    height:60px;
+    overflow:hidden;
+    
+}
+
+        
+
+
+
+
+  </style>
+
+
+   <style>
+  .bg-1 { 
+    background-color: #1abc9c; /* Green */
+    color: #ffffff;
+  }
+  .bg-2 { 
+    background-color: #474e5d; /* Dark Blue */
+    color: #ffffff;
+  }
+  .bg-3 { 
+    background-color: #fff; /* White */
+    color: #555555;
+    /*opacity: 0.85;*/
+  }
+
+
+
+.header {
+  background-color:  #ffffff;;
+  
+  color: #ffffff;
+  padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+body  {
+  background-image: url("{% static 'registration/img/back.jpg' %}");
+  background-color: #cccccc;
+  background-size: cover;
+  background-repeat:no-repeat;
+}
+
+
+
+  </style>
+
+
+  </head>
+  
+    <body >
+
+ <!--<div class="jumbotron text-center  jumbotron-fluid" style="margin-bottom:0" >
+
+   
+         <img src="{% static 'registration/img/agronomia.jpg' %}" class="img" alt="main" width="900" height="150">
+
+        
+  
+</div>-->
+
+ <!--<div class="header">
+  <img  src="{% static 'registration/img/AGRONOMIA.png' %}" class="img" alt="main" width="1500" height="250">
+</div>-->
+      <!-- Navegación -->
+
+
+
+      <nav class="navbar  navbar-expand-lg navbar-light bg-light" >
+        <div class="container">
+          <!--<a class="navbar-brand" href="{% url 'home' %}"> HAZLO TU</a>-->
+
+          <div class="container">
+          <a class="navbar-brand" href="{% url 'home' %}">
+          <img src="{% static 'registration/img/logo.jpeg' %}" alt="" id="logo">
+        </a>
+        
+   
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#ned" aria-controls="ned" aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="ned">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">   Inicio</a>
+              </li>
+              
+       {% if request.user.is_staff %}
+
+           
+<li class="nav-item">
+            <a class="nav-link" href="{% url 'profiles:filter' %}">Organizaciones</a>
+            </li>
+
+            {% endif %}
+            
+             
+
+            
+<!--
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'info:list' %}">Envios</a>
+            </li>
+-->
+             <li class="nav-item">
+            <a class="nav-link" href="{% url 'info:filter' %}">Proyectos</a>
+            </li>
+
+            
+              {% load wagtailcore_tags %}
+             <li class="nav-item">
+            <a class="nav-link" href="{% slugurl 'objetivos' %}">Objetivos</a>
+            
+            </li>
+
+            
+
+            <li class="nav-item">
+            <a class="nav-link" href="{% slugurl 'eventos' %}">Nosotros</a>
+            
+            </li>
+
+             <li class="nav-item">
+            <a class="nav-link" href="{% slugurl 'se-miembro' %}">Se miembro</a>
+            
+            </li>
+
+            <li class="nav-item">
+            <a class="nav-link" href="{% slugurl 'contacto' %}">Contacto</a>
+            
+            </li>
+
+
+            
+
+
+              
+            </ul>
+
+            <ul class="navbar-nav mr-auto navbar-right " >
+            
+
+             
+              {% if not request.user.is_authenticated %}
+             
+
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login'  %}">Acceder</a>
+              </li>
+             
+
+              {% else %}
+
+              
+
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
+              </li>
+
+               
+             
+
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout'  %}">Salir</a>
+              
+
+              {% endif %}
+                  
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+       {% if request.user.is_staff %}
+
+           
+
+            {%include 'registration/includes/admin_menu.html'%}
+
+            {% endif %}
+      <!-- Contenido -->
+      <div class="text-center">
+      {% block content %}
+   
+
+      {% endblock %}
+
+
+ </div>
+
+        <!-- Footer -->
+<footer class="page-footer font-small white pt-4">
+
+  <!-- Footer Links -->
+  <div class="container-fluid text-center text-md-left bg-3">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-6 mt-md-0 mt-3">
+
+        <!-- Content -->
+        <h5 class="text-uppercase">Contenido</h5>
+        <p>Contenido publicado por Hazlo tu.</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Enlaces</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Nosotros</a>
+          </li>
+          <li>
+            <a href="#!">Valores</a>
+          </li>
+          <li>
+            <a href="#!">Contacto</a>
+          </li>
+          <li>
+            <a href="#!">Se miembro</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Redes sociales</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Instagram</a>
+          </li>
+          <li>
+            <a href="#!">Facebook</a>
+          </li>
+          <li>
+            <a href="#!">Twitter</a>
+          </li>
+          <li>
+            <a href="#!">Youtube</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+
+
+
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="container-fluid footer-copyright text-center py-3 bg-3" >© 2019 Copyright:
+    <a href="https://mdbootstrap.com/education/bootstrap/"> JRHMedia</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+
+
+      <!-- Javascript -->
+      <script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'core/js/main.js' %}"></script>
+  </body>
+</html>

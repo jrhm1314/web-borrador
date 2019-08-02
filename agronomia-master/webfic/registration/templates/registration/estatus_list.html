@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Crear Reporte{% endblock %}
+{% block content %}
+
+<main role="main">
+  <div class="container bg-3">
+    <div class="row mt-3 mb-5">
+      <div class="col-md-9 mx-auto">
+        <h3>CATEGORIA</h3>
+        <p style="color:green;"> Editar, crear o borrar categorías </p>
+       
+       <a href="{% url 'estatus_create'  %}">Crear categoría</a>
+
+
+         <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>CATEGOIA</th>
+                        <th>EDITAR CATEGORIA</th>
+                        <th>BORRAR CATEGORIA</th>
+                       
+                        
+                    </tr>
+                </thead>
+                
+
+                <b>{% for estatus in estatus_list %} </b><br>
+                <tbody>
+                    <tr>
+                        
+
+                        <td>{{estatus.status|truncatechars:"16"}}</td>
+                       
+                        <td> <a href="{% url 'estatus_update' estatus.id %}">Editar</a></td>
+                        <td> <a href="{% url 'estatus_delete' estatus.id %}">Borrar</a></td>
+                        
+                    </tr>
+                    
+                </tbody>
+                {% endfor %}
+
+
+
+            </table>
+
+
+
+     
+</main>
+{% endblock %}

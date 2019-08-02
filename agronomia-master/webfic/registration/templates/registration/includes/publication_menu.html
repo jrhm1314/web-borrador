@@ -1,0 +1,44 @@
+{% load static %}
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+<link href="{% static 'pages/css/custom_ckeditor.css' %}" rel="stylesheet">
+
+ <style>
+     .navbar1 .container .navbar-brand {
+    
+    font-size: 25px;
+    margin: 8px 0;
+      }
+
+      .navbar1 .container .nav-link {
+    
+    font-size: 17px;
+    margin: 9px 0;
+      }
+  </style>
+
+
+<nav class="navbar1 navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <span class="navbar-brand" href="#"><i>{{request.user.profile.user}}</i></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nep" aria-controls="nep" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nep">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'publication_create' %}"><i>Crear publicacion</i></a>
+        </li>
+
+        
+        <li class="nav-item">
+          <a class="nav-link" href="{% url  'info:filtro' %}"><i>Mis publicaciones</i></a>
+        </li>
+
+         <li class="nav-item">
+          <a class="nav-link" href="{% url  'profile' %}"><i>Editar Perfil</i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

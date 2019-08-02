@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Crear Reporte{% endblock %}
+{% block content %}
+{% if  request.user.is_authenticated %}
+      {%include 'registration/includes/publication_menu.html'%}
+       {% endif %}
+
+<main role="main">
+  <div class="container bg-3">
+    <div class="row mt-3 mb-5">
+      <div class="col-md-9 mx-auto">
+        <h2>Crear Publicación</h2>
+        <p style="color:green;"> llenar todos los campos </p>
+       
+
+      <p> {{request.user.profile.nombre}}</p>
+      
+
+
+        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+            <h3>Titulo:</h3>
+            {{ form.title }}
+            <h3>Lugar:</h3>
+            {{ form.lugar }}
+            <h3>Link de google maps :</h3>
+            {{ form.maps }}
+            <h3>Descripcion general, motivos de proyecto:</h3>
+            {{ form.overview }}
+            <h3>Fecha de proyecto:</h3>
+            {{ form.fecha }}
+            <h3>Hora de inicio:</h3>
+            {{ form.hora }}
+            <h3>Contenido:</h3>
+            {{ form.content }}
+            <h3>Actividades:</h3>
+            {{ form.actividades }}
+            <h3>Requisitos (Objetos o requerimientos que los voluntarios necesitaran al realizar la actividad Ej. botellas de agua para hidratar):</h3>
+            {{ form.requisitos }}
+            <h3>Logistica (horarios y actividades de forma mas especifica en forma de lista):</h3>
+            {{ form.logistica }}
+            <h3>Imagen principal:</h3>
+            {{ form.imagen }}
+            <h3>Archivo pdf para mas informacion(opcional):</h3>
+            {{ form.upload }}
+            <h3>Clasificacion del proyecto (Ej. medio ambiente):</h3>
+            {{ form.estatus }}
+            {{ form.created }}
+            {{ form.updated }}
+
+
+            
+
+          
+          <div class="text-center">
+            <input type="submit" class="btn btn-primary btn-block" value="Enviar" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

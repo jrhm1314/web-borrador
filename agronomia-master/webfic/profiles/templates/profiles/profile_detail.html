@@ -1,0 +1,127 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}{{profile.user}}{% endblock %}
+{% block content %}
+<head>
+  
+  <title>Bootstrap Theme Simply Me</title>
+ 
+
+ 
+ 
+
+  <style>
+  .bg-1 { 
+    background-color: #1abc9c; /* Green */
+    color: #ffffff;
+  }
+  .bg-2 { 
+    background-color: #474e5d; /* Dark Blue */
+    color: #ffffff;
+  }
+  .bg-3 { 
+    background-color: #fff; /* White */
+    color: #555555;
+  }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid bg-3 text-center">
+  <h3>{% if profile.nombre %}<p>{{profile.nombre}} {% endif %}
+
+  
+
+  </h3>
+  {% if profile.avatar %}
+  <img src="{{profile.avatar.url}}" class="img-rounded" alt="Bird" width="350" height="350">
+
+  {% else %}
+  <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-rounded" alt="Bird" width="350" height="350">
+  {% endif %}
+
+  <h3></p>
+    DIRECTOR<br>
+{% if profile.nombre_director %} {{profile.nombre_director}} </p>{% endif %}<br>
+                  SECRETARIO<br>
+              {% if profile.nombre_secretario %} {{profile.nombre_secretario}}</p>{% endif %}<br>
+    ENFOQUE SOCIAL<br>
+{% if profile.enfoque_social %}<p>{{profile.enfoque_social}}</p>{% endif %}</h3><br>
+
+<div class="container-fluid bg-2 text-center">
+
+ <h3>CONTACTO</h3>
+  <h4>Email</h4>
+  <p>{% if profile.correo %} {{profile.correo}} {% endif %}</p>
+  <h4>Telefono</h4>
+  <p>{% if profile.telefono %} {{profile.telefono}} {% endif %}</p>
+  <h4>Direccion</h4>
+  <p>{% if profile.direccion %} {{profile.direccion}}, {% endif %}
+  {% if profile.ciudad %} {{profile.ciudad}}, {% endif %}
+  {% if profile.estado %} {{profile.estado}}, {% endif %}
+  {% if profile.pais %} {{profile.pais}}. {% endif %}</p>
+  <h4>Fecha de nacimiento</h4>
+  <p>{% if profile.fecha_nac %} {{profile.fecha_nac}} {% endif %}</p><br>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="container-fluid bg-3 text-center">    
+  
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>PROYECTOS</h3><br>
+      <p>{% if profile.proyectos %} {{profile.proyectos}} {% endif %}</p>
+
+
+        {% if profile.img_proyectos %}
+          <img src="{{profile.img_proyectos.url}}" class="img-circle" alt="Bird" width="250" height="250">
+
+          {% else %}
+        <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-circle" alt="Bird" width="250" height="250">
+        {% endif %}
+
+
+    
+    </div>
+    <div class="col-sm-4"> 
+      <h3>MIEMBROS</h3><br>
+      <p>{% if profile.miembros %} {{profile.miembros}} {% endif %}</p>
+      {% if profile.img_miembros %}
+          <img src="{{profile.img_miembros.url}}" class="img-circle" alt="Bird" width="250" height="250">
+
+          {% else %}
+        <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-circle" alt="Bird" width="250" height="250">
+        {% endif %}
+    </div>
+    <div class="col-sm-4"> 
+      <h3>OBJETIVOS</h3><br>
+      <p>{% if profile.objetivos %} {{profile.objetivos}} {% endif %}</p>
+       {% if profile.img_objetivos %}
+          <img src="{{profile.img_objetivos.url}}" class="img-circle" alt="Bird" width="250" height="250">
+
+          {% else %}
+        <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-circle" alt="Bird" width="250" height="250">
+        {% endif %}
+
+    </div>
+  </div>
+  <br>
+</div>
+<br>
+
+
+</div>
+
+<br>
+
+</body>
+{% endblock %}

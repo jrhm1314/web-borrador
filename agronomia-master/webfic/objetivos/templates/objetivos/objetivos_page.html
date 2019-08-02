@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+{% block title %}Objetivos{% endblock %}
+
+
+  {% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-objetivospage{% endblock %}
+
+{% block content %}
+
+
+<main role="main">
+  <div class="container bg-3">
+    {{ page.body|richtext }}
+
+<div class="text-center">
+
+     {% for item in page.gallery_images.all %}
+        
+            {% image item.image fill-500x240 %}
+            <br>
+            <br>
+        
+    {% endfor %}
+
+
+
+</div>
+
+
+</div>
+
+
+</main>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

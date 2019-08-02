@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+{% block title %}GRACIAS{% endblock %}
+
+
+  {% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-contactopage{% endblock %}
+
+{% block content %}
+
+
+<main role="main">
+  <div class="container bg-3">
+ 
+
+<div class="text-center">
+
+
+
+<h2>{{ page.thank_you_text | richtext }}</h2>
+
+</main>
+
+{% endblock %}
